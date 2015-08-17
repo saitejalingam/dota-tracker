@@ -1,0 +1,67 @@
+<!doctype html>
+<html ng-app="Tracker">
+<head>
+    <meta charset="UTF-8">
+    <title>Noob Legacy Tracker</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
+    <link href="styles/base.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row marginrow">
+            <div class="col-md-3 sidebar" ng-controller="NavController as navList">
+                <div class="row">
+                    <img src="images/logo.png" class="logo-img" width="75" height="75"/>
+                    <h1 class="title col-xs-8">Noob Legacy Tracker</h1>
+                </div>
+                <hr>
+                <ul class="nav nav-pills nav-stacked playerlist">
+                    <li ng-repeat="p in navList.playerList" ng-class="{active: navList.isSelected(p.player_id)}">
+                        <a ng-href="/Tracker/index.html#/{{p.player_id}}" ng-click="navList.selectPlayer(p.player_id)">{{p.player_name}}
+                            <span ng-show="navList.isSelected(p.player_id)">
+                                <i class="fa fa-times icon" ng-click="navList.removePlayer($index)"></i>
+                            </span>
+                        </a>
+                    </li>
+                </ul>
+                <hr>
+                <div class="form col-md-12">
+                    <form ng-submit="navList.addPlayer()">
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-steam-square fa-lg fa-fw"></i></span>
+                            <input class="form-control" ng-model="navList.newPlayer.player_id" type="text"
+                                   placeholder="Steam ID" required\>
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
+                            <input class="form-control" ng-model="navList.newPlayer.player_name" type="text"
+                                   placeholder="Player Name"\>
+                        </div>
+                        <button class="btn btn-primary" ng-model="navList.button">{{navList.button}}</button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-9 col-md-offset-3" ng-view>
+
+            </div>
+        </div>
+
+    </div>
+
+    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="scripts/app.js"></script>
+    <script src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
+    <script src="scripts/controllers/NavController"></script>
+    <script src="scripts/controllers/StatController"></script>
+    <script src="scripts/services/infoService.js"></script>
+    <script src="scripts/services/dataService.js"></script>
+
+</body>
+</html>

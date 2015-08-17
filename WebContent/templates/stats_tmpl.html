@@ -1,0 +1,64 @@
+<div class="statHeader">
+    <h3>Stats</h3>
+    <table class ="table container">
+        <thead>
+        <tr>
+            <th>Win Rate</th>
+            <th>Average Kills</th>
+            <th>Average Deaths</th>
+            <th>Average Assists</th>
+            <th>Average Last Hits</th>
+            <th>Average GPM</th>
+            <th>Average XPM</th>
+        </tr>
+        <tbody>
+        <tr class="win">
+            <td>{{stat.average.win_percent}}%</td>
+            <td>{{stat.average.kills | number:2}}</td>
+            <td>{{stat.average.deaths | number:2}}</td>
+            <td>{{stat.average.assists | number:2}}</td>
+            <td>{{stat.average.last_hits | number:2}}</td>
+            <td>{{stat.average.gpm | number:2}}</td>
+            <td>{{stat.average.xpm | number:2}}</td>
+        </tr>
+        </tbody>
+        </thead>
+    </table>
+            <hr>
+    <h3>Match History</h3>
+</div>
+<table class="table container">
+    <thead>
+    <tr>
+        <th>Hero</th>
+        <th>Date</th>
+        <th>K / D / A</th>
+        <th>Duration</th>
+        <th>LH / Denies</th>
+        <th>Items</th>
+        <th>GPM</th>
+        <th>XPM</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="md in stat.matchDetails" ng-class="{win : ((md.player_slot < 127 && md.radiant_win == true) || (md.player_slot > 64 && md.radiant_win == false))}">
+        <td><img ng-src="http://cdn.dota2.com/apps/dota2/images/heroes/{{stat.getHeroName(md.hero_id)}}_sb.png" height="28" width="52"></td>
+        <td>{{md.start_time*1000 | date:'h:mm a MMM dd'}}</td>
+        <td>
+            {{md.kills}} / {{md.deaths}} / {{md.assists}}
+        </td>
+        <td>{{md.duration | time}}</td>
+        <td>{{md.last_hits}} / {{md.denies}}</td>
+        <td>
+        	<img ng-if="md.item[0] != 0" ng-src="http://cdn.dota2.com/apps/dota2/images/items/{{stat.getItemName(md.items[0])}}_lg.png" height="18" width="24">
+        	<img ng-if="md.item[1] != 0" ng-src="http://cdn.dota2.com/apps/dota2/images/items/{{stat.getItemName(md.items[1])}}_lg.png" height="18" width="24">
+        	<img ng-if="md.item[2] != 0" ng-src="http://cdn.dota2.com/apps/dota2/images/items/{{stat.getItemName(md.items[2])}}_lg.png" height="18" width="24">
+        	<img ng-if="md.item[3] != 0" ng-src="http://cdn.dota2.com/apps/dota2/images/items/{{stat.getItemName(md.items[3])}}_lg.png" height="18" width="24">
+        	<img ng-if="md.item[4] != 0" ng-src="http://cdn.dota2.com/apps/dota2/images/items/{{stat.getItemName(md.items[4])}}_lg.png" height="18" width="24">
+        	<img ng-if="md.item[5] != 0" ng-src="http://cdn.dota2.com/apps/dota2/images/items/{{stat.getItemName(md.items[5])}}_lg.png" height="18" width="24">
+        </td>
+        <td>{{md.gpm}}</td>
+        <td>{{md.xpm}}</td>
+    </tr>
+    </tbody>
+</table>

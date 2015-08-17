@@ -1,0 +1,137 @@
+html, body{
+    background: radial-gradient(circle, #e4ebe8, #a8a8a8);
+    width: 100%;
+    height: 100%;
+}
+
+h3 {
+	margin-top: 1.9%;
+	font-family: Montserrat, arial;
+	font-weight: 500;
+}
+
+.sidebar {
+    background: black;
+    background: linear-gradient(0deg, black, #373737);
+    color: whitesmoke;
+    padding-top: 1.5%;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 1000;
+    display: block;
+    overflow-x: hidden;
+    overflow-y: auto;
+    border-right: 1px solid #7B807E;
+}
+
+.logo-img{
+    float: right;
+    margin-top: 3.3%;
+    margin-right: 5%;
+}
+
+.nav> li>a {
+    color: #BB241C;
+    font-weight: 600;
+    font-family: helvetica, arial, sans-serif;
+    padding-top: 3%;
+    padding-bottom: 3%;
+    padding-left: 10%;
+}
+
+.nav-pills>li.active>a, .nav-pills>li.active>a:focus, .nav-pills>li.active>a:hover {
+    background: linear-gradient(90deg, #BB241C, #fe3026);
+    color: whitesmoke;
+}
+
+.title {
+    font-size: 1.7em;
+    font-family: Montserrat;
+    font-weight: 700;
+    color: #d2271e;
+    letter-spacing: 4px;
+    padding-right: 0;
+}
+
+.title:hover {
+    color: #e52a21;
+}
+
+.icon {
+    float: right;
+    margin: 1%;
+}
+
+.fa-times:hover{
+    color: black;
+}
+
+.fa-pencil:hover{
+    color: black;
+}
+
+.form {
+    padding-left: 0;
+    margin: 1% 1% 1% 1%;
+
+}
+
+.form-control {
+    margin-bottom: 1%;
+    color: #aa211b;
+    background: linear-gradient(#cacaca, #afb5b3);
+    font-style: oblique;
+    font-family: helvetica, arial, sans-serif;
+}
+
+.playerlist {
+    padding-top: 2%;
+    margin-top: 10%;
+    padding-bottom: 2%;
+    background: linear-gradient(#cacaca, #afb5b3, #cacaca, #afb5b3);
+    border-radius: 4px;
+}
+
+.btn-primary {
+    background: linear-gradient(30deg, #BB241C, #fe3026);
+    border-color: #e14026;
+    float: right;
+    font-family: Montserrat, arial;
+    margin-top: 1%;
+    padding-right: 7%;
+    padding-left: 7%;
+}
+
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active, .btn-primary:active:hover {
+    background: linear-gradient(90deg, #BB241C, #fe3026);
+    border-color: #bf3521;
+}
+.input-group {
+    margin-bottom: 1%;
+}
+.input-group-addon>i {
+    color: #bf3822;
+}
+
+.table{
+    background: linear-gradient(90deg, #595959, #707070, #595959);
+    color: whitesmoke;
+    border-radius: 5px;
+}
+
+tbody> tr {
+    font-family: Montserrat, arial;
+    font-weight: 500;
+    color: #ba1010;
+}
+
+.win {
+    color: #56a920;
+}
+
+.statHeader {
+    margin-top: 2.9%;
+}
+
