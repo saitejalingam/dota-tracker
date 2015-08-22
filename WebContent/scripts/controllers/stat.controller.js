@@ -5,11 +5,11 @@
         .module('Tracker')
         .controller('StatController', StatController);
 
-    StatController.$inject = ['infoService', 'dataService', '$routeParams'];
+    StatController.$inject = ['infoService', '$routeParams'];
     function StatController(infoService, $routeParams) {
         var stat = this;
         stat.playerID = $routeParams.profileID;
-        stat.matchDetails = infoService.matchHistory;
+        stat.matchDetails = infoService.getMatchHistory(stat.playerID);
         stat.average = infoService.average;
 
         infoService.getItems().then(function(data){

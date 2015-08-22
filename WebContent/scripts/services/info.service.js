@@ -71,6 +71,8 @@
         };
 
         self.getMatchHistory = function(playerID){
+
+            var matchPromise = $q.defer();
             $http({
                 method: 'GET',
                 url: 'http://localhost:8080/Tracker/api/player/'+playerID,
@@ -78,12 +80,15 @@
             })
                 .success(function (data) {
                     console.dir(data);
-                    self.matchHistory = data;
+                    matchPromise.resolve(data);
                     self.average = self.getAverages(data);
                 })
                 .error(function(err){
                     console.log(err);
+                    matchPromise.reject(err);
                 });
+
+            return matchPromise.promise;
         };
 
         self.addPlayer = function(player){
@@ -136,13 +141,13 @@
                    average.xpm += matchDetails[i].xpm;
                 }
 
-                average.win_percent = ((average.win_percent/25)*100).toFixed(2);
-                average.kills /= 25;
-                average.deaths /= 25;
-                average.assists /= 25;
-                average.last_hits /= 25;
-                average.gpm /= 25;
-                average.xpm /= 25;
+                average.win_percent = ((average.win_percent/len)*100).toFixed(2);
+                average.kills /= len;
+                average.deaths /= len;
+                average.assists /= len;
+                average.last_hits /= len;
+                average.gpm /= len;
+                average.xpm /= len;
 
             return average;
         }

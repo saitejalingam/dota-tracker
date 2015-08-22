@@ -35,13 +35,13 @@
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-steam-square fa-lg fa-fw"></i></span>
                             <input class="form-control" ng-model="navList.newPlayer.player_id" type="text"
-                                   placeholder="Steam ID" required\>
+                                   placeholder="Steam ID" required \>
                         </div>
 
                         <div class="input-group">
                             <span class="input-group-addon"><i class="fa fa-user fa-lg fa-fw"></i></span>
                             <input class="form-control" ng-model="navList.newPlayer.player_name" type="text"
-                                   placeholder="Player Name"\>
+                                   placeholder="Player Name" required \>
                         </div>
                         <button class="btn btn-primary" ng-model="navList.button">{{navList.button}}</button>
                     </form>
@@ -55,13 +55,11 @@
 
     </div>
 
-    <script src="https://code.angularjs.org/1.4.3/angular.js"></script>
+    <script src="vendor/angular.js"></script>
+    <script src="vendor/angular-route.js"></script>
     <script src="scripts/app.js"></script>
-    <script src="https://code.angularjs.org/1.4.3/angular-route.js"></script>
-    <script src="scripts/controllers/NavController"></script>
-    <script src="scripts/controllers/StatController"></script>
-    <script src="scripts/services/infoService.js"></script>
-    <script src="scripts/services/dataService.js"></script>
-
+    <script src="scripts/controllers/nav.controller.js"></script>
+    <script src="scripts/controllers/stat.controller.js"></script>
+    <script src="scripts/services/info.service.js"></script>
 </body>
 </html>

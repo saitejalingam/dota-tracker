@@ -1,0 +1,38 @@
+{
+  "name": "dota-tracker",
+  "version": "1.0.0",
+  "description": "This is a Dota 2 Match History Tracker",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/saitejalingam/dota-tracker.git"
+  },
+  "keywords": [
+    "dota",
+    "2",
+    "angularJs",
+    "tracker"
+  ],
+  "author": "saitejalingam",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/saitejalingam/dota-tracker/issues"
+  },
+  "homepage": "https://github.com/saitejalingam/dota-tracker#readme",
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-autoprefixer": "^3.0.3",
+    "grunt-contrib-cssmin": "^0.13.0",
+    "grunt-contrib-uglify": "^0.9.1",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-karma": "^0.12.0",
+    "jasmine-core": "^2.3.4",
+    "karma": "^0.13.9",
+    "karma-jasmine": "^0.3.6",
+    "karma-phantomjs-launcher": "^0.2.1",
+    "phantomjs": "^1.9.18"
+  }
+}
