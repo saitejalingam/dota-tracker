@@ -34,42 +34,6 @@
             });
         });
 
-        describe('should get list of heroes ', function(){
-            it('| Success', function(){
-
-                httpBackend.expectGET('http://localhost:8080/Tracker/api/heroes/getHeroes').respond(200, [{},{},{}]);
-                infoService.getHeroes().then(function(result){
-                    expect(result.length).toEqual(3);
-                })
-            });
-
-            it('| Error', function(){
-
-                httpBackend.expectGET('http://localhost:8080/Tracker/api/heroes/getHeroes').respond(500, {});
-                infoService.getHeroes().then(function(result){
-                    expect(result.length).toEqual({});
-                })
-            });
-        });
-
-        describe('should get list of items ', function(){
-            it('| Success', function(){
-
-                httpBackend.expectGET('http://localhost:8080/Tracker/api/items/getItems').respond(200, [{},{},{}]);
-                infoService.getItems().then(function(result){
-                    expect(result.length).toEqual(3);
-                })
-            });
-
-            it('| Error', function(){
-
-                httpBackend.expectGET('http://localhost:8080/Tracker/api/items/getItems').respond(500, {});
-                infoService.getItems().then(function(result){
-                    expect(result.length).toEqual({});
-                })
-            });
-        });
-
         describe('should get match history of player ', function(){
             it('| Success', function(){
 
@@ -85,6 +49,24 @@
                 infoService.getMatchHistory(87915734).then(function(result){
                     expect(result).toEqual({});
                 })
+            });
+        });
+
+        describe('should get list of ', function(){
+            it('heroes', function(){
+
+                httpBackend.expectGET('http://localhost:8080/Tracker/api/heroes/getHeroes').respond(200, [{},{}]);
+                infoService.getHeroes().then(function(result){
+                    expect(infoService.heroes.length).toEqual(2);
+                });
+            });
+
+            it('items', function(){
+
+                httpBackend.expectGET('http://localhost:8080/Tracker/api/heroes/getItems').respond(200, [{},{}]);
+                infoService.getItems().then(function(result){
+                    expect(infoService.items.length).toEqual(2);
+                });
             });
         });
 

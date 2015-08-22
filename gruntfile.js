@@ -25,6 +25,7 @@ module.exports = function(grunt){
                         'WebContent/scripts/**/*.js',
                         'WebContent/tests/**/*.js'
                     ],
+                    logLevel: 'LOG_INFO',
                     reporters: ['progress']
                 }
             }

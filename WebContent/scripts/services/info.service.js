@@ -9,15 +9,23 @@
     function infoServiceFn($http, $q){
 
         var self = this;
-        self.average = {
-            win_percent: 0,
-            kills: 0,
-            deaths: 0,
-            assists: 0,
-            last_hits: 0,
-            gpm: 0,
-            xpm: 0
-        };
+
+        init();
+
+        function init(){
+            self.average = {
+                win_percent: 0,
+                kills: 0,
+                deaths: 0,
+                assists: 0,
+                last_hits: 0,
+                gpm: 0,
+                xpm: 0
+            };
+
+            self.heroes = [];
+            self.items = [];
+        }
 
         self.getPlayers = function(){
             var playerPromise = $q.defer();
@@ -37,37 +45,35 @@
         };
 
         self.getHeroes = function(){
-            var heroPromise = $q.defer();
-
+            var defer = $q.defer();
             $http({
                 method: 'GET',
                 url: 'http://localhost:8080/Tracker/api/heroes/getHeroes',
                 cache: true
             }).success(function(data){
-                heroPromise.resolve(data);
-                console.dir(data);
-            }).error(function(){
-                heroPromise.reject(data);
+                self.heroes = data;
+                defer.resolve(data);
+            }).error(function(err){
+                defer.reject(err);
             });
 
-            return heroPromise.promise;
+            return defer.promise;
         };
 
         self.getItems = function(){
-            var itemPromise = $q.defer();
-
+            var defer = $q.defer();
             $http({
                 method: 'GET',
                 url: 'http://localhost:8080/Tracker/api/items/getItems',
                 cache: true
             }).success(function(data){
-                itemPromise.resolve(data);
-                console.dir(data);
+                self.items = data;
+                defer.resolve(data);
             }).error(function(err){
-                itemPromise.reject(err);
+                defer.reject(err);
             });
 
-            return itemPromise.promise;
+            return defer.promise;
         };
 
         self.getMatchHistory = function(playerID){
@@ -80,8 +86,8 @@
             })
                 .success(function (data) {
                     console.dir(data);
-                    matchPromise.resolve(data);
                     self.average = self.getAverages(data);
+                    matchPromise.resolve(data);
                 })
                 .error(function(err){
                     console.log(err);
@@ -91,33 +97,6 @@
             return matchPromise.promise;
         };
 
-        self.addPlayer = function(player){
-
-            $http({
-                method: 'POST',
-                url: 'http://localhost:8080/Tracker/api/player/add',
-                data: player
-            }).success(function(data){
-                console.log(data);
-            }).error(function(err){
-                console.log(err);
-            });
-
-        };
-
-        self.removePlayer = function(player){
-
-            $http({
-                method: 'POST',
-                url: 'http://localhost:8080/Tracker/api/player/remove',
-                data: player
-            }).success(function(data){
-                console.log(data);
-            }).error(function(err){
-                console.log(err);
-            });
-        };
-        
         self.getAverages = function(matchDetails) {
 
             var average = {
@@ -150,7 +129,50 @@
                 average.xpm /= len;
 
             return average;
-        }
+        };
+
+        self.getHeroName = function(id){
+
+            var i=0;
+            while(self.heroes[i].id != id)
+                i++;
+            return self.heroes[i].name;
+        };
+
+        self.getItemName = function(id){
+
+            var i=0;
+            while(self.items[i].id != id)
+                i++;
+            return self.items[i].name;
+        };
+
+        self.addPlayer = function(player){
+
+            $http({
+                method: 'POST',
+                url: 'http://localhost:8080/Tracker/api/player/add',
+                data: player
+            }).success(function(data){
+                console.log(data);
+            }).error(function(err){
+                console.log(err);
+            });
+
+        };
+
+        self.removePlayer = function(player){
+
+            $http({
+                method: 'POST',
+                url: 'http://localhost:8080/Tracker/api/player/remove',
+                data: player
+            }).success(function(data){
+                console.log(data);
+            }).error(function(err){
+                console.log(err);
+            });
+        };
     }
 
 })();

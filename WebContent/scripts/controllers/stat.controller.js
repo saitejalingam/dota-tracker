@@ -8,34 +8,33 @@
     StatController.$inject = ['infoService', '$routeParams'];
     function StatController(infoService, $routeParams) {
         var stat = this;
-        stat.playerID = $routeParams.profileID;
-        stat.matchDetails = infoService.getMatchHistory(stat.playerID);
-        stat.average = infoService.average;
 
-        infoService.getItems().then(function(data){
-            stat.items = data;
-        }, function(err){
-            console.log(err);
-        });
+        init();
 
-        infoService.getHeroes().then(function(data){
-            stat.heroes = data;
-        }, function(err){
-            console.log(err);
-        });
+        function init(){
+            stat.playerID = $routeParams.profileID;
+
+            infoService.getHeroes().then(function(result){
+                //console.log(result);
+            });
+
+            infoService.getItems().then(function(result){
+                //console.log(result);
+            });
+
+            infoService.getMatchHistory(stat.playerID).then(function(result){
+                stat.matchDetails = result;
+            });
+
+            stat.average = infoService.average;
+        }
 
         stat.getHeroName = function(id){
-           		var i=0;
-            	while(stat.heroes[i].id != id)
-                    i++;
-				return stat.heroes[i].name;
+            return infoService.getHeroName(id);
         };
 
         stat.getItemName = function(id){
-           		var i=0;
-            	while(stat.items[i].id != id)
-                    i++;
-				return stat.items[i].name;
+            return infoService.getItemName(id);
         };
     }
 })();
