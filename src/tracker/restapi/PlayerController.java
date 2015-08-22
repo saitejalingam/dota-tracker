@@ -27,14 +27,14 @@ public class PlayerController {
 		return mdDao.getMatchDetails(playerID);	
 	}
 	
-	@POST
+	@PUT
 	@Path("/add")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String addPlayer(Player p){
 		return PlayerDAO.addPlayer(p);
 	}
 	
-	@POST
+	@DELETE
 	@Path("/remove")
 	@Consumes(MediaType.APPLICATION_JSON)
 	public String removePlayer(Player p){

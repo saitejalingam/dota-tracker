@@ -150,7 +150,7 @@
         self.addPlayer = function(player){
 
             $http({
-                method: 'POST',
+                method: 'PUT',
                 url: 'http://localhost:8080/Tracker/api/player/add',
                 data: player
             }).success(function(data){
@@ -164,7 +164,7 @@
         self.removePlayer = function(player){
 
             $http({
-                method: 'POST',
+                method: 'DELETE',
                 url: 'http://localhost:8080/Tracker/api/player/remove',
                 data: player
             }).success(function(data){

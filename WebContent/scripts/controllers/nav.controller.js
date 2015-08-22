@@ -6,21 +6,24 @@
         .controller('NavController', NavController);
 
     NavController.$inject = ['infoService'];
-    function NavController(infoService, $http){
+    function NavController(infoService){
         var navList = this;
-        navList.button = "Add";
+        init();
 
-        infoService.getPlayers().then(function(data){
-            navList.playerList = data;
-            navList.active = navList.playerList[0].player_id;
+        function init(){
+            navList.button = "Add";
+            infoService.getPlayers().then(function(data){
+                navList.playerList = data;
+                navList.active = navList.playerList[0].player_id;
 
-            for(var i= 0, len=navList.playerList.length; i<len; i++){
-                infoService.getMatchHistory(navList.playerList[i].player_id);
-            }
-        }, function(){
-            navList.playerList = null;
-            navList.active = null;
-        });
+                for(var i= 0, len=navList.playerList.length; i<len; i++){
+                    infoService.getMatchHistory(navList.playerList[i].player_id);
+                }
+            }, function(){
+                navList.playerList = null;
+                navList.active = null;
+            });
+        }
 
         navList.addPlayer = function(){
             if(navList.newPlayer.player_id != null) {
@@ -31,8 +34,7 @@
         };
 
         navList.removePlayer = function(idx){
-            navList.playerList.splice(idx, 1)
-            infoService.addPlayer(navList.newPlayer);
+            navList.playerList.splice(idx, 1);
         };
 
         navList.selectPlayer = function(n){
@@ -42,6 +44,6 @@
 
         navList.isSelected = function(n){
             return navList.active === n;
-        }
+        };
     }
 })();

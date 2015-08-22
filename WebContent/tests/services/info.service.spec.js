@@ -22,7 +22,7 @@
                 httpBackend.expectGET('http://localhost:8080/Tracker/api/player/getPlayers').respond(200, [{},{}]);
                 infoService.getPlayers().then(function(result){
                     expect(result.length).toEqual(2);
-                })
+                });
             });
 
             it('| Error', function(){

@@ -21,7 +21,8 @@
                 <hr>
                 <ul class="nav nav-pills nav-stacked playerlist">
                     <li ng-repeat="p in navList.playerList" ng-class="{active: navList.isSelected(p.player_id)}">
-                        <a ng-href="/Tracker/index.html#/{{p.player_id}}" ng-click="navList.selectPlayer(p.player_id)">{{p.player_name}}
+                        <a ng-href="/Tracker/index.html#/{{p.player_id}}" ng-click="navList.selectPlayer(p.player_id)">
+                            <span ng-bind="p.player_name"></span>
                             <span ng-show="navList.isSelected(p.player_id)">
                                 <i class="fa fa-times icon" ng-click="navList.removePlayer($index)"></i>
                             </span>
@@ -61,5 +62,6 @@
     <script src="scripts/controllers/nav.controller.js"></script>
     <script src="scripts/controllers/stat.controller.js"></script>
     <script src="scripts/services/info.service.js"></script>
+    <script src="scripts/filters/time.filter.js"></script>
 </body>
 </html>
